@@ -1,0 +1,64 @@
+
+{% extends "layout.html" %}
+{% block body %} 
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}       ')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Coding Thunder</h1>
+              <span class="subheading">A Blog liked by the programmers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+    
+    <!-- To do fetch it using  for loop  from the database -->  
+    {% for post in pos %}
+    
+    
+          
+          <div class="post-preview">
+            <a href="/post/{{post.slug}}">
+              <h2 class="post-title">{{post.Title}}
+                
+              </h2>
+              <h3 class="post-subtitle">
+                {{post.subtitle}}             </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">Admin </a>
+              {{post.date}}</p>
+          </div>
+          {{post.Content[0:100]}}...
+          <hr>
+      </li></a>     
+     {% endfor%}     
+
+
+               
+          <!-- Pager -->
+          <div class="clearfix">
+            <a class="btn btn-primary float-right" href="#">Older Posts →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- Footer -->
+    {% endblock %}
+
+from flask_sqlalchemy import SQLAlchemy
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/db_name'
